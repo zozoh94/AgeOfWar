@@ -11,6 +11,7 @@ private:
 public:
     AireDeJeu(Joueur& j1, Joueur& j2);
     void lancer();
+    const void afficher();
 };
 
 #endif // AIREDEJEU_H

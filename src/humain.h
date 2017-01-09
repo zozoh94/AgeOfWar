@@ -7,6 +7,7 @@ class Humain : public Joueur
 {
 public:
     using Joueur::Joueur;
+    virtual void jouer();
 };
 
 #endif // HUMAIN_H
