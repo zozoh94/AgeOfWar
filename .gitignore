@@ -3,3 +3,7 @@ build/
 *.kdev4
 CMakeLists.txt
 .directory
+cmake-build-debug/
+.idea/
+.idea/misc.xml
+.idea/vcs.xml
