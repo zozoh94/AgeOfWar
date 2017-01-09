@@ -11,6 +11,7 @@ class IA : public Joueur
 {
 public:
     using Joueur::Joueur;
+    virtual void jouer();
 };
 
 #endif // IA_H

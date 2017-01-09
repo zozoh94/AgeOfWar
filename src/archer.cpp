@@ -1,6 +1,5 @@
 #include "archer.h"
 
-Archer::Archer()
+Archer::Archer() : TypeUnite(12, 8, 3)
 {
-    
 }

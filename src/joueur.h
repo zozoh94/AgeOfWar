@@ -20,6 +20,8 @@ public:
     Joueur(string nom);
     const Joueur::Sens getSens();
     Joueur& setSens(Joueur::Sens sens);
+    virtual const  void afficher();
+    virtual void jouer() = 0;
 };
 
 #endif // JOUEUR_H

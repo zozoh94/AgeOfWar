@@ -15,3 +15,7 @@ Joueur& Joueur::setSens(Joueur::Sens _sens)
     
     return *this;
 }
+
+const void Joueur::afficher()
+{
+}
