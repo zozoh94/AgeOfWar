@@ -1,0 +1,5 @@
+bin/
+build/
+*.kdev4
+CMakeLists.txt
+.directory
