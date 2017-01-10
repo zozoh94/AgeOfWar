@@ -11,6 +11,7 @@ private:
     TypeUnite &type;
 public:
     Unite(TypeUnite& type, int _case_);
+    void afficher() const;
 };
 
 #endif // UNITE_H

@@ -18,9 +18,9 @@ protected:
     string nom;
 public:
     Joueur(string nom);
-    const Joueur::Sens getSens();
+    Joueur::Sens getSens() const;
     Joueur& setSens(Joueur::Sens sens);
-    virtual const  void afficher();
+    virtual void afficher() const;
     virtual void jouer() = 0;
 };
 

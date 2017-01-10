@@ -1,6 +1,6 @@
 CFLAGS = -W -Wall -std=c++14 -O4
 LDFLAGS =
-DEP = airedejeu.o joueur.o ia.o humain.o
+DEP = airedejeu.o archer.o catapulte.o fantassin.o humain.o ia.o joueur.o supersoldat.o typeunite.o unite.o
 CC = g++
 NAME = ageofwar
 

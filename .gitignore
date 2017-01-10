@@ -1,5 +1,5 @@
 bin/
-build/
-*.kdev4
 CMakeLists.txt
+cmake-build-debug/
 .directory
+.idea/
