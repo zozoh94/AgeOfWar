@@ -34,7 +34,7 @@ void Humain::jouer()
     if (acheter(*typeUnite))
         cout << "Vous avez acheté un " << typeUnite->getNom() << "." << endl;
     else
-        cout << "Vous n'avez pas assez d'argent pour acheter un " << typeUnite->getNom() << "." << 1endl;
+        cout << "Vous n'avez pas assez d'argent pour acheter un " << typeUnite->getNom() << "." << endl;
 
 
 }

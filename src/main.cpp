@@ -7,7 +7,8 @@
 int main(int argc, char **argv) {
     IA ia("Alpha");
     Humain humain("Enzo");
-    AireDeJeu jeu(ia, humain);
+    Humain humain2("Benoit");
+    AireDeJeu jeu(humain, humain2);
     jeu.lancer();
     return 0;
 }
