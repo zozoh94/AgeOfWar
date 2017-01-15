@@ -2,6 +2,7 @@
 #define TYPEUNITE_H
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -11,12 +12,16 @@ class TypeUnite
 {
 friend class Unite;
 protected:
+    string nom;
     int prix;
     int pointsVieBase;
     int pointsAttaque;
-    vector<int> portees;
 public:
-    TypeUnite(int prix, int pointsVieBase, int pointsAttaque, initializer_list<int> portees);
+    TypeUnite(string nom, int prix, int pointsVieBase, int pointsAttaque);
+    string getNom();
+    int getPrix();
+    int getPointsVieBase();
+    int getPointsAttaque();
 };
 
 #endif // TYPEUNITE_H

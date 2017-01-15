@@ -16,6 +16,8 @@ protected:
     vector<Unite> unites;
     Joueur::Sens sens;
     string nom;
+    int argent;
+    bool acheter(TypeUnite unite);
 public:
     Joueur(string nom);
     const Joueur::Sens getSens();

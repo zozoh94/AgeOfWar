@@ -1,6 +1,14 @@
 #include "typeunite.h"
 
-TypeUnite::TypeUnite(int _prix, int _pointsVieBase, int _pointsAttaque, std::initializer_list< int > _portees) : 
-prix(_prix), pointsVieBase(_pointsVieBase), pointsAttaque(_pointsAttaque), portees(_portees)
+TypeUnite::TypeUnite(string _nom, int _prix, int _pointsVieBase, int _pointsAttaque) :
+nom(_nom), prix(_prix), pointsVieBase(_pointsVieBase), pointsAttaque(_pointsAttaque)
 {
 }
+
+string TypeUnite::getNom() { return nom; }
+
+int TypeUnite::getPrix() { return prix; }
+
+int TypeUnite::getPointsVieBase() { return pointsVieBase; }
+
+int TypeUnite::getPointsAttaque() { return pointsAttaque; }

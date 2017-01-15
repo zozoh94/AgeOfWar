@@ -2,6 +2,7 @@
 
 Joueur::Joueur(string _nom) : nom(_nom)
 {
+    argent = 1000;
 }
 
 const Joueur::Sens Joueur::getSens()
@@ -18,4 +19,16 @@ Joueur& Joueur::setSens(Joueur::Sens _sens)
 
 const void Joueur::afficher()
 {
+
+}
+
+bool Joueur::acheter(TypeUnite typeUnite) {
+    if (argent >= typeUnite.getPrix()) {
+        unites.push_back(Unite(typeUnite, 0));
+        argent -= typeUnite.getPrix();
+
+        return true;
+    }
+
+    return false;
 }
