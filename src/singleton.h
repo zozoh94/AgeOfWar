@@ -4,10 +4,14 @@
 template <class T> class Singleton
 {
 public:
-	static T& getInstance();
+	static T* getInstance();
+    ~Singleton<T>();
 protected:
-	static T instance;
+	static T *instance;
+private:
+	T& operator= (const T&){}
 };
 
 #include "singleton.inc"
+
 #endif

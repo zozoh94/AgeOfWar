@@ -8,9 +8,9 @@ class Unite
 private:
     int case_;
     int pointsVie;
-    TypeUnite &type;
+    TypeUnite *type;
 public:
-    Unite(TypeUnite& type, int _case_);
+    Unite(TypeUnite *type, int _case_);
     void afficher() const;
 };
 

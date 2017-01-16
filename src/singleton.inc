@@ -1,6 +1,13 @@
-template <class T> T Singleton<T>::instance=T();
+template <class T> T* Singleton<T>::instance = NULL;
 
-template <class T>  T& Singleton<T>::getInstance()
+template <class T>  T* Singleton<T>::getInstance()
 {
-        return instance;
+    if(!instance)
+        instance = new T();
+    return instance;
+}
+
+template <class T> Singleton<T>::~Singleton<T>()
+{
+    delete instance;
 }

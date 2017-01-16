@@ -6,6 +6,7 @@ using namespace std;
 
 Joueur::Joueur(string _nom) : nom(_nom)
 {
+    argent = 1000;
 }
 
 Joueur::Sens Joueur::getSens() const
@@ -30,4 +31,15 @@ void Joueur::afficher() const {
             unite.afficher();
         }
     }
+}
+
+bool Joueur::acheter(TypeUnite &typeUnite) {
+    if (argent >= typeUnite.getPrix()) {
+        unites.push_back(Unite(&typeUnite, 0));
+        argent -= typeUnite.getPrix();
+
+        return true;
+    }
+
+    return false;
 }

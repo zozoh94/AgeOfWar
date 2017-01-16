@@ -3,6 +3,9 @@
 
 #include "typeunite.h"
 #include "singleton.h"
+#include <iostream>
+
+using namespace std;
 
 class Fantassin : public Singleton<Fantassin>, public TypeUnite
 {
