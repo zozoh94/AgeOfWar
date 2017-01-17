@@ -14,6 +14,7 @@ void AireDeJeu::lancer()
 {
     char choix = 'o';
     while(choix == 'o') {
+        afficher();
         joueur1.jouer();
         joueur2.jouer();
         cout << "Voulez vous continuer ? (o/N)" << endl;
@@ -21,8 +22,11 @@ void AireDeJeu::lancer()
     }
 }
 
-const void AireDeJeu::afficher()
+void AireDeJeu::afficher() const
 {
+    cout << "ETAT DU JEU" << endl;
+    cout << "Joueur 1 :" << endl;
     joueur1.afficher();
+    cout << "Joueur 2 :" << endl;
     joueur2.afficher();
 }

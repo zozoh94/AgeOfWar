@@ -1,6 +1,5 @@
 #include "fantassin.h"
 
-
-Fantassin::Fantassin() : TypeUnite("Fantassin", 50, 10, 3)
+Fantassin::Fantassin() : TypeUnite("Fantassin", 10, 10, 4)
 {
 }

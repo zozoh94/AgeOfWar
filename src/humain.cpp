@@ -1,8 +1,11 @@
 #include <iostream>
+
 #include "humain.h"
 #include "fantassin.h"
 #include "archer.h"
-#include "supersoldat.h"
+#include "catapulte.h"
+
+using namespace std;
 
 void Humain::jouer()
 {
@@ -12,23 +15,29 @@ void Humain::jouer()
     cout << std::endl << "Tour de " << nom << endl << "---" << endl << endl;
     cout << "Que voulez-vous acheter ? (" << argent << " or)" << endl;
 
-    cout << "1. Fantassin (50o)"  << endl;
-    cout << "2. Archer (75o)"  << endl;
-    cout << "3. Super soldat (200o)"  << endl;
+    Fantassin *fantassin = Fantassin::getInstance();
+    Archer *archer = Archer::getInstance();
+    Catapulte *catapulte = Catapulte::getInstance();
+
+    cout << "1. " << fantassin->getNom() << " (prix:" << fantassin->getPrix() << ")"  << endl;
+    cout << "2. " << archer->getNom() << " (prix:" << archer->getPrix() << ")"  << endl;
+    cout << "3. " << catapulte->getNom() << " (prix:" << catapulte->getPrix() << ")"  << endl;
 
     cin >> joueurChoix;
 
     TypeUnite *typeUnite;
     switch (joueurChoix) {
         case 1:
-            typeUnite = &Fantassin::getInstance();
+            typeUnite = fantassin;
             break;
         case 2:
-            typeUnite = &Archer::getInstance();
+            typeUnite = archer;
             break;
         case 3:
-            typeUnite = &SuperSoldat::getInstance();
+            typeUnite = catapulte;
             break;
+        default:
+            typeUnite = fantassin;
     }
 
     if (acheter(*typeUnite))
@@ -38,3 +47,10 @@ void Humain::jouer()
 
 
 }
+
+void Humain::afficher() const
+{
+    cout << "   Type : Humain" << endl;
+    Joueur::afficher();
+}
+

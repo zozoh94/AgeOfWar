@@ -1,5 +1,5 @@
 #include "supersoldat.h"
 
-SuperSoldat::SuperSoldat() : TypeUnite("Super Soldat", 200, 100, 10)
+SuperSoldat::SuperSoldat() : TypeUnite("Super Soldat", 0, 10, 4)
 {
 }

@@ -18,10 +18,10 @@ protected:
     int pointsAttaque;
 public:
     TypeUnite(string nom, int prix, int pointsVieBase, int pointsAttaque);
-    string getNom();
-    int getPrix();
-    int getPointsVieBase();
-    int getPointsAttaque();
+    string getNom() const;
+    int getPrix() const;
+    int getPointsVieBase() const;
+    int getPointsAttaque() const;
 };
 
 #endif // TYPEUNITE_H

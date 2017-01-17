@@ -1,11 +1,15 @@
+#include <iostream>
+
 #include "joueur.h"
+
+using namespace std;
 
 Joueur::Joueur(string _nom) : nom(_nom)
 {
     argent = 1000;
 }
 
-const Joueur::Sens Joueur::getSens()
+Joueur::Sens Joueur::getSens() const
 {
     return sens;
 }
@@ -17,14 +21,21 @@ Joueur& Joueur::setSens(Joueur::Sens _sens)
     return *this;
 }
 
-const void Joueur::afficher()
-{
-
+void Joueur::afficher() const {
+    cout << "   Nom : " << nom << endl;
+    cout << "   Sens : " << (sens == Joueur::Sens::J1 ? "de la case 1 vers la case 12" : "de la case 12 vers la case 1")
+         << endl;
+    if (!unites.empty()) {
+        cout << "   Unités : " << endl;
+        for (Unite const &unite : unites) {
+            unite.afficher();
+        }
+    }
 }
 
-bool Joueur::acheter(TypeUnite typeUnite) {
+bool Joueur::acheter(TypeUnite &typeUnite) {
     if (argent >= typeUnite.getPrix()) {
-        unites.push_back(Unite(typeUnite, 0));
+        unites.push_back(Unite(&typeUnite, 0));
         argent -= typeUnite.getPrix();
 
         return true;

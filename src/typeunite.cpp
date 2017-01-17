@@ -5,10 +5,10 @@ nom(_nom), prix(_prix), pointsVieBase(_pointsVieBase), pointsAttaque(_pointsAtta
 {
 }
 
-string TypeUnite::getNom() { return nom; }
+string TypeUnite::getNom() const { return nom; }
 
-int TypeUnite::getPrix() { return prix; }
+int TypeUnite::getPrix() const { return prix; }
 
-int TypeUnite::getPointsVieBase() { return pointsVieBase; }
+int TypeUnite::getPointsVieBase() const { return pointsVieBase; }
 
-int TypeUnite::getPointsAttaque() { return pointsAttaque; }
+int TypeUnite::getPointsAttaque() const { return pointsAttaque; }
