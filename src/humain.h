@@ -7,7 +7,7 @@ class Humain : public Joueur
 {
 public:
     using Joueur::Joueur;
-    virtual void jouer();
+    virtual void choisir();
     virtual void afficher() const;
 };
 

@@ -8,6 +8,7 @@ class AireDeJeu
 private:
     Joueur &joueur1;
     Joueur &joueur2;
+    int tour;
 public:
     AireDeJeu(Joueur& j1, Joueur& j2);
     void lancer();

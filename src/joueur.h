@@ -17,13 +17,16 @@ protected:
     Joueur::Sens sens;
     string nom;
     int argent;
+    int vieBase;
     bool acheter(TypeUnite& unite);
 public:
     Joueur(string nom);
     Joueur::Sens getSens() const;
     Joueur& setSens(Joueur::Sens sens);
     virtual void afficher() const;
-    virtual void jouer() = 0;
+    virtual void choisir() = 0;
+    void jouer();
+    void incrArgent(int argent);
 };
 
 #endif // JOUEUR_H

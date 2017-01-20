@@ -4,9 +4,8 @@
 
 using namespace std;
 
-Joueur::Joueur(string _nom) : nom(_nom)
+Joueur::Joueur(string _nom) : nom(_nom), argent(0), vieBase(100)
 {
-    argent = 1000;
 }
 
 Joueur::Sens Joueur::getSens() const
@@ -22,11 +21,12 @@ Joueur& Joueur::setSens(Joueur::Sens _sens)
 }
 
 void Joueur::afficher() const {
-    cout << "   Nom : " << nom << endl;
-    cout << "   Sens : " << (sens == Joueur::Sens::J1 ? "de la case 1 vers la case 12" : "de la case 12 vers la case 1")
+    cout << "    Nom : " << nom << endl;
+    cout << "    Sens : " << (sens == Joueur::Sens::J1 ? "de la case 1 vers la case 12" : "de la case 12 vers la case 1")
          << endl;
+    cout << "    Argent : " << argent << endl;
     if (!unites.empty()) {
-        cout << "   Unités : " << endl;
+        cout << "    Unités : " << endl;
         for (Unite const &unite : unites) {
             unite.afficher();
         }
@@ -42,4 +42,12 @@ bool Joueur::acheter(TypeUnite &typeUnite) {
     }
 
     return false;
+}
+
+void Joueur::incrArgent(int _argent) {
+    argent += _argent;
+}
+
+void Joueur::jouer() {
+
 }

@@ -4,12 +4,12 @@
 
 using namespace std;
 
-void IA::jouer()
+void IA::choisir()
 {
 }
 
 void IA::afficher() const
 {
-    cout << "   Type : IA" << endl;
+    cout << "    Type : IA" << endl;
     Joueur::afficher();
 }
