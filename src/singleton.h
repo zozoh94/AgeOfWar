@@ -5,7 +5,7 @@ template <class T> class Singleton
 {
 public:
 	static T* getInstance();
-    ~Singleton<T>();
+    static void kill();
 protected:
 	static T *instance;
 private:

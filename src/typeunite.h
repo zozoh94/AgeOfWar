@@ -6,8 +6,6 @@
 
 using namespace std;
 
-class Unite;
-
 class TypeUnite
 {
 friend class Unite;

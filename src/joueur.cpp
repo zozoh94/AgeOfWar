@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "joueur.h"
+#include "airedejeu.h"
 
 using namespace std;
 
@@ -27,15 +28,17 @@ void Joueur::afficher() const {
     cout << "    Argent : " << argent << endl;
     if (!unites.empty()) {
         cout << "    Unités : " << endl;
-        for (Unite const &unite : unites) {
-            unite.afficher();
+        for (Unite *unite : unites) {
+            unite->afficher();
         }
     }
 }
 
 bool Joueur::acheter(TypeUnite &typeUnite) {
     if (argent >= typeUnite.getPrix()) {
-        unites.push_back(Unite(&typeUnite, 0));
+        Unite *unite = new Unite(&typeUnite, *this, sens == Sens::J1 ? 1 : 10);
+        aire->addUnite(unite);
+        unites.push_back(unite);
         argent -= typeUnite.getPrix();
 
         return true;
@@ -50,4 +53,12 @@ void Joueur::incrArgent(int _argent) {
 
 void Joueur::jouer() {
 
+}
+
+string Joueur::getNom() const {
+    return nom;
+}
+
+Joueur &Joueur::setAire(AireDeJeu *_aire) {
+    aire = _aire;
 }

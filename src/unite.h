@@ -3,14 +3,18 @@
 
 #include "typeunite.h"
 
+class Joueur;
+
 class Unite
 {
 private:
     int case_;
     int pointsVie;
     TypeUnite *type;
+    Joueur &joueur;
 public:
-    Unite(TypeUnite *type, int _case_);
+    Unite(TypeUnite *type, Joueur &joueur, int _case_);
+    int getCase() const;
     void afficher() const;
 };
 

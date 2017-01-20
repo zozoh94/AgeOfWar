@@ -8,21 +8,26 @@
 
 using namespace std;
 
+class AireDeJeu;
+
 class Joueur
 {
 public:
     enum Sens{J1, J2};
 protected:
-    vector<Unite> unites;
+    vector<Unite*> unites;
     Joueur::Sens sens;
     string nom;
     int argent;
     int vieBase;
     bool acheter(TypeUnite& unite);
+    AireDeJeu *aire;
 public:
     Joueur(string nom);
+    Joueur& setAire(AireDeJeu* aire);
     Joueur::Sens getSens() const;
     Joueur& setSens(Joueur::Sens sens);
+    string getNom() const;
     virtual void afficher() const;
     virtual void choisir() = 0;
     void jouer();

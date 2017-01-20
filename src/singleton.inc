@@ -1,3 +1,5 @@
+#include <iostream>
+
 template <class T> T* Singleton<T>::instance = NULL;
 
 template <class T>  T* Singleton<T>::getInstance()
@@ -7,7 +9,7 @@ template <class T>  T* Singleton<T>::getInstance()
     return instance;
 }
 
-template <class T> Singleton<T>::~Singleton<T>()
+template <class T> void Singleton<T>::kill()
 {
     delete instance;
 }
