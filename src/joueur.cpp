@@ -23,13 +23,20 @@ Joueur& Joueur::setSens(Joueur::Sens _sens)
 
 void Joueur::afficher() const {
     cout << "    Nom : " << nom << endl;
-    cout << "    Sens : " << (sens == Joueur::Sens::J1 ? "de la case 1 vers la case 12" : "de la case 12 vers la case 1")
+    cout << "    Vie : " << vieBase << endl;
+    cout << "    Sens : " << (sens == Sens::J1 ? "de la case 1 vers la case 12" : "de la case 12 vers la case 1")
          << endl;
     cout << "    Argent : " << argent << endl;
     if (!unites.empty()) {
         cout << "    Unités : " << endl;
-        for(auto it = unites.begin();it != unites.end(); ++it) {
-            it->second->afficher();
+        if(sens == Sens::J1) {
+            for (auto it = unites.begin(); it != unites.end(); ++it) {
+                it->second->afficher();
+            }
+        } else {
+            for (auto it = unites.rbegin(); it != unites.rend(); ++it) {
+                it->second->afficher();
+            }
         }
     }
 }
@@ -38,11 +45,15 @@ bool Joueur::acheter(TypeUnite &typeUnite) {
     if (argent >= typeUnite.getPrix()) {
         Unite *unite = new Unite(&typeUnite, *this, sens == Sens::J1 ? 0 : 11);
         if(unites.find(unite->getCase()) == unites.end()){
-            aire->addUnite(unite);
-            unites.insert({unite->getCase(), unite});
-            argent -= typeUnite.getPrix();
+            if(aire->addUnite(unite)) {
+                unites.insert({unite->getCase(), unite});
+                argent -= typeUnite.getPrix();
+            } else {
+                return false;
+            }
         } else {
             delete unite;
+            return false;
         }
 
         return true;
@@ -77,6 +88,7 @@ string Joueur::getNom() const {
 
 Joueur &Joueur::setAire(AireDeJeu *_aire) {
     aire = _aire;
+    return *this;
 }
 
 AireDeJeu *Joueur::getAire() {

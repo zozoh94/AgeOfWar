@@ -28,15 +28,21 @@ void AireDeJeu::lancer()
         joueur2.jouer();
         cout << endl << endl;
         afficher();
+        if(joueur1.estMort() || joueur2.estMort())
+            break;
         joueur1.choisir();
         joueur2.choisir();
         cout << endl << "Voulez vous continuer ? (o/N)" << endl;
         cin >> choix;
         cout << endl;
     }
-    if(tour == 100) {
+
+    if(joueur1.estMort() && !joueur2.estMort())
+        cout << "Vicoire du joueur 2 !" << endl;
+    else if(!joueur1.estMort() && joueur2.estMort())
+        cout << "Vicoire du joueur 1 !" << endl;
+    else
         cout << "Il n'y a pas de vainqueur !" << endl;
-    }
 }
 
 void AireDeJeu::afficher() const
@@ -48,9 +54,11 @@ void AireDeJeu::afficher() const
     joueur2.afficher();
 }
 
-AireDeJeu &AireDeJeu::addUnite(Unite *unite) {
+bool AireDeJeu::addUnite(Unite *unite) {
+    if (unites.find(unite->getCase()) != unites.end())
+        return false;
     unites.insert({unite->getCase(), unite});
-    return *this;
+    return true;
 }
 
 AireDeJeu::~AireDeJeu() {
@@ -74,7 +82,7 @@ Joueur *AireDeJeu::getAdversaire(AireDeJeu *aire, Joueur *joueur) {
 }
 
 bool AireDeJeu::attaquer(Joueur* joueur, int case_, int attaque) {
-    if (unites.find(case_) != unites.end()) {
+    if (unites.find(case_) != unites.end() && unites.find(case_)->second->getJoueur() == joueur) {
         unites[case_]->decrVie(attaque);
         if(unites[case_]->estMort()) {
             unites.erase(case_);
@@ -91,8 +99,8 @@ bool AireDeJeu::attaquer(Joueur* joueur, int case_, int attaque) {
 }
 
 void AireDeJeu::avancer(Unite *unite) {
-    if((unite->getJoueur()->getSens() == Joueur::Sens::J1 && unites.find(unite->getCase()+1) == unites.end()) ||
-            (unite->getJoueur()->getSens() == Joueur::Sens::J2 && unites.find(unite->getCase()-1) == unites.end())) {
+    if((unite->getJoueur()->getSens() == Joueur::Sens::J1 && unite->getCase() != 10 && unites.find(unite->getCase()+1) == unites.end()) ||
+            (unite->getJoueur()->getSens() == Joueur::Sens::J2 && unite->getCase() != 1 && unites.find(unite->getCase()-1) == unites.end())) {
         unites.erase(unite->getCase());
         unite->getJoueur()->avancerUnite(unite);
     }

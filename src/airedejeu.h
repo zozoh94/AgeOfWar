@@ -17,7 +17,7 @@ private:
 public:
     AireDeJeu(Joueur& j1, Joueur& j2);
     ~AireDeJeu();
-    AireDeJeu& addUnite(Unite *unite);
+    bool addUnite(Unite *unite);
     void lancer();
     void afficher() const;
     static Joueur* getAdversaire(AireDeJeu* aire, Joueur* joueur);

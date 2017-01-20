@@ -17,7 +17,6 @@ void Unite::afficher() const
     cout << "            Points d'attaque : " << type->pointsAttaque << endl;
     cout << "            Type : " << type->nom << endl;
     cout << "            Case : " << case_ << endl;
-    cout << "            Joueur : " << joueur.getNom() << endl;
 }
 
 int Unite::getCase() const {
