@@ -23,3 +23,31 @@ void Unite::afficher() const
 int Unite::getCase() const {
     return case_;
 }
+
+Joueur* Unite::getJoueur() const {
+    return &joueur;
+}
+
+void Unite::action1() {
+    type->action1(this);
+}
+
+void Unite::action2() {
+    type->action2(this);
+}
+
+void Unite::action3() {
+    type->action3(this);
+}
+
+void Unite::decrVie(int vie) {
+    pointsVie -= vie;
+}
+
+void Unite::setCase(int _case_) {
+    case_ = _case_;
+}
+
+bool Unite::estMort() const {
+    return pointsVie <= 0;
+}
