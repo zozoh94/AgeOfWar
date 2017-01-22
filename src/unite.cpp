@@ -19,6 +19,10 @@ void Unite::afficher() const
     cout << "            Case : " << case_ << endl;
 }
 
+const TypeUnite* Unite::getType() const {
+    return type;
+}
+
 int Unite::getCase() const {
     return case_;
 }
@@ -49,4 +53,8 @@ void Unite::setCase(int _case_) {
 
 bool Unite::estMort() const {
     return pointsVie <= 0;
+}
+
+void Unite::setType(TypeUnite* _type) {
+    type = _type;
 }

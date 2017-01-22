@@ -67,7 +67,7 @@ void Joueur::incrArgent(int _argent) {
 }
 
 void Joueur::jouer() {
-    cout << nom << " joue" << endl;
+    //cout << nom << " joue" << endl;
     //Action1
     for(auto it = unites.begin();it != unites.end(); ++it) {
         it->second->action1();
@@ -120,4 +120,11 @@ void Joueur::avancerUnite(Unite* unite) {
 void Joueur::supprimerUnite(int case_) {
     delete unites.find(case_)->second;
     unites.erase(case_);
+}
+
+Unite* Joueur::getUnite(int case_) const {
+    if(unites.find(case_) != unites.end()){
+        return unites.find(case_)->second;
+    }
+    return nullptr;
 }

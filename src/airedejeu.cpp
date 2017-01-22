@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 #include "airedejeu.h"
 #include "archer.h"
@@ -19,21 +20,28 @@ void AireDeJeu::lancer()
     char choix = 'o';
     while(choix != 'N' && tour < 100) {
         ++tour;
+
         cout << "TOUR " << tour << endl << endl;
+
+        afficherVue();
+
         joueur1.incrArgent(8);
         joueur2.incrArgent(8);
-        afficher();
-        cout << endl << "En train de jouer ..." << endl << endl;
         joueur1.jouer();
         joueur2.jouer();
-        cout << endl << endl;
-        afficher();
+
+        cout << "                        \\/" << endl;
+
+        afficherVue();
+
         if(joueur1.estMort() || joueur2.estMort())
             break;
+
         joueur1.choisir();
         joueur2.choisir();
-        cout << endl << "Voulez vous continuer ? (o/N)" << endl;
-        cin >> choix;
+
+        /*cout << endl << "Voulez vous continuer ? (o/N)" << endl;
+        cin >> choix;*/
         cout << endl;
     }
 
@@ -52,6 +60,68 @@ void AireDeJeu::afficher() const
     joueur1.afficher();
     cout << "Joueur 2 :" << endl;
     joueur2.afficher();
+}
+
+void AireDeJeu::afficherVue() const
+{
+    // Nom des bases
+    cout << " ";
+    for (int i = 0 ; i < 11 ; i++)
+        if (i == 0 || i == 11) cout << "___ ";
+        else cout << "    ";
+    cout << "___" << endl;
+    string base1 = "| " + joueur1.getNom() + " |";
+    string base2 = "| " + joueur2.getNom() + " |";
+    cout << setw(40) << left << base1 << base2 << endl;
+    /*for (int i = 1 ; i < 11 ; i++)
+        if (i < 10) cout << "    ";
+        else cout << "   ";*/
+
+    // Top
+    cout << "|";
+    for (int i = 0 ; i < 11 ; i++)
+    {
+            cout << "____";
+    }
+    cout << "___|" << endl << "|";
+
+    // inside
+    for (int j = 0; j < 2 ; j++) {
+        for (int i = 0 ; i < 12 ; i++) {
+            cout << " ";
+
+            bool found = false;
+            for (auto it = unites.begin(); it != unites.end(); ++it) {
+                if (it->second->getCase() == i) {
+                    if (j == 0)
+                        //cout << " ";
+                        cout << it->second->getJoueur()->getNom()[0];
+                    else
+                        if (it->second->getType()->getNom() == "Fantassin")
+                            cout << "F";
+                        else if (it->second->getType()->getNom() == "Archer")
+                            cout << "A";
+                        if (it->second->getType()->getNom() == "Catapulte")
+                            cout << "C";
+
+                    found = true;
+                }
+            }
+            if (!found) cout << " ";
+
+            cout << " |";
+        }
+
+        cout << endl << "|";
+    }
+
+    // Bottom
+    for (int i = 0 ; i < 12 ; i++)
+    {
+        cout << "___|";
+    }
+
+    cout << endl;
 }
 
 bool AireDeJeu::addUnite(Unite *unite) {
@@ -85,6 +155,7 @@ bool AireDeJeu::attaquer(Joueur* joueur, int case_, int attaque) {
     if (unites.find(case_) != unites.end() && unites.find(case_)->second->getJoueur() == joueur) {
         unites[case_]->decrVie(attaque);
         if(unites[case_]->estMort()) {
+            joueur->getAdversaire()->incrArgent((unites[case_]->getType()->getPrix())/2);
             unites.erase(case_);
             joueur->supprimerUnite(case_);
         }
