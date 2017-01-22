@@ -47,11 +47,11 @@ void AireDeJeu::lancer()
     }
 
     if(joueur1.estMort() && !joueur2.estMort())
-        cout << "Vicoire du joueur 2 !" << endl;
+        cout << endl << "               Vicoire du joueur 2 !" << endl;
     else if(!joueur1.estMort() && joueur2.estMort())
-        cout << "Vicoire du joueur 1 !" << endl;
+        cout << endl << "               Vicoire du joueur 1 !" << endl;
     else
-        cout << "Il n'y a pas de vainqueur !" << endl;
+        cout << endl << "            Il n'y a pas de vainqueur !" << endl;
 }
 
 void AireDeJeu::afficher() const
@@ -69,6 +69,7 @@ void AireDeJeu::afficherVue() const
     cout << " ";
     cout << setw(39) << left << "______" << "________" << endl;
 
+    // on utilise ostringstream pour pouvoir convertir sans trop d'effort l'int en string
     string base1 = "| " + joueur1.getNom() + " | " + static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << joueur1.getVieBase() ) ).str();
     string base2 = static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << joueur2.getVieBase() ) ).str() + " | " + joueur2.getNom() + " |";
     cout << setw(35) << left << base1 << base2 << endl;
@@ -96,7 +97,7 @@ void AireDeJeu::afficherVue() const
                             cout << "F";
                         else if (it->second->getType()->getNom() == "Archer")
                             cout << "A";
-                        if (it->second->getType()->getNom() == "Catapulte")
+                        else if (it->second->getType()->getNom() == "Catapulte")
                             cout << "C";
 
                     found = true;
