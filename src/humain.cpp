@@ -20,7 +20,7 @@ void Humain::choisir()
     Archer *archer = Archer::getInstance();
     Catapulte *catapulte = Catapulte::getInstance();
 
-    /*cout << "1. " << fantassin->getNom() << " (prix:" << fantassin->getPrix() << ")"  << endl;
+    /*cout << endl << "1. " << fantassin->getNom() << " (prix:" << fantassin->getPrix() << ")"  << endl;
     cout << "2. " << archer->getNom() << " (prix:" << archer->getPrix() << ")"  << endl;
     cout << "3. " << catapulte->getNom() << " (prix:" << catapulte->getPrix() << ")"  << endl;
     cout << "4. Ne rien faire" << endl;*/
