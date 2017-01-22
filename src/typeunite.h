@@ -18,9 +18,9 @@ protected:
     int prix;
     int pointsVieBase;
     int pointsAttaque;
-    virtual void action1(Unite* unite) const = 0;
-    virtual void action2(Unite* unite) const = 0;
-    virtual void action3(Unite* unite) const = 0;
+    virtual void action1(Unite* unite) = 0;
+    virtual void action2(Unite* unite) = 0;
+    virtual void action3(Unite* unite) = 0;
 
     // utils
     int addition(int a, int b);

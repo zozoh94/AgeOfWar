@@ -39,6 +39,7 @@ public:
     void avancerUnite(Unite* unite);
     bool estMort() const;
     void supprimerUnite(int case_);
+    Unite* getUnite(int case_) const;
 };
 
 #endif // JOUEUR_H
