@@ -28,6 +28,7 @@ public:
     Joueur::Sens getSens() const;
     Joueur& setSens(Joueur::Sens sens);
     string getNom() const;
+    int getVieBase() const;
     AireDeJeu* getAire();
     virtual void afficher() const;
     virtual void choisir() = 0;

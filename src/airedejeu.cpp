@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <sstream>
 
 #include "airedejeu.h"
 #include "archer.h"
@@ -21,7 +22,7 @@ void AireDeJeu::lancer()
     while(choix != 'N' && tour < 100) {
         ++tour;
 
-        cout << "TOUR " << tour << endl << endl;
+        cout << endl << "                     TOUR " << tour << endl;
 
         afficherVue();
 
@@ -40,17 +41,17 @@ void AireDeJeu::lancer()
         joueur1.choisir();
         joueur2.choisir();
 
-        /*cout << endl << "Voulez vous continuer ? (o/N)" << endl;
-        cin >> choix;*/
+        cout << endl << "Voulez vous continuer ? (o/N)" << endl;
+        cin >> choix;
         cout << endl;
     }
 
     if(joueur1.estMort() && !joueur2.estMort())
-        cout << "Vicoire du joueur 2 !" << endl;
+        cout << endl << "               Vicoire du joueur 2 !" << endl;
     else if(!joueur1.estMort() && joueur2.estMort())
-        cout << "Vicoire du joueur 1 !" << endl;
+        cout << endl << "               Vicoire du joueur 1 !" << endl;
     else
-        cout << "Il n'y a pas de vainqueur !" << endl;
+        cout << endl << "            Il n'y a pas de vainqueur !" << endl;
 }
 
 void AireDeJeu::afficher() const
@@ -64,25 +65,19 @@ void AireDeJeu::afficher() const
 
 void AireDeJeu::afficherVue() const
 {
-    // Nom des bases
+    // Nom des bases + leur vie
     cout << " ";
-    for (int i = 0 ; i < 11 ; i++)
-        if (i == 0 || i == 11) cout << "___ ";
-        else cout << "    ";
-    cout << "___" << endl;
-    string base1 = "| " + joueur1.getNom() + " |";
-    string base2 = "| " + joueur2.getNom() + " |";
-    cout << setw(40) << left << base1 << base2 << endl;
-    /*for (int i = 1 ; i < 11 ; i++)
-        if (i < 10) cout << "    ";
-        else cout << "   ";*/
+    cout << setw(39) << left << "______" << "________" << endl;
+
+    // on utilise ostringstream pour pouvoir convertir sans trop d'effort l'int en string
+    string base1 = "| " + joueur1.getNom() + " | " + static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << joueur1.getVieBase() ) ).str();
+    string base2 = static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << joueur2.getVieBase() ) ).str() + " | " + joueur2.getNom() + " |";
+    cout << setw(35) << left << base1 << base2 << endl;
 
     // Top
     cout << "|";
     for (int i = 0 ; i < 11 ; i++)
-    {
             cout << "____";
-    }
     cout << "___|" << endl << "|";
 
     // inside
@@ -93,9 +88,10 @@ void AireDeJeu::afficherVue() const
             bool found = false;
             for (auto it = unites.begin(); it != unites.end(); ++it) {
                 if (it->second->getCase() == i) {
+                    // Première ligne de la case, on affiche la lettre du joueur à qui appartient l'unité
                     if (j == 0)
-                        //cout << " ";
                         cout << it->second->getJoueur()->getNom()[0];
+                    // Deuxième ligne de la case, on affiche la lettre de l'unité en question pour la représenter
                     else
                         if (it->second->getType()->getNom() == "Fantassin")
                             cout << "F";
@@ -119,9 +115,7 @@ void AireDeJeu::afficherVue() const
 
     // Bottom
     for (int i = 0 ; i < 12 ; i++)
-    {
         cout << "___|";
-    }
 
     cout << endl;
 }

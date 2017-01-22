@@ -86,6 +86,10 @@ string Joueur::getNom() const {
     return nom;
 }
 
+int Joueur::getVieBase() const {
+    return vieBase;
+}
+
 Joueur &Joueur::setAire(AireDeJeu *_aire) {
     aire = _aire;
     return *this;

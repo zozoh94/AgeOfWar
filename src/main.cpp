@@ -31,6 +31,5 @@ int main(int argc, char **argv) {
         cout << "3 : IA vs IA (partie interminable)" << endl;
     }
 
-
     return 0;
 }

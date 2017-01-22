@@ -9,14 +9,15 @@ using namespace std;
 
 void IA::choisir()
 {
-    // Afficher tour
-    cout << std::endl << "Tour de " << nom << endl << "---" << endl << endl;
-
     Fantassin *fantassin = Fantassin::getInstance();
     Archer *archer = Archer::getInstance();
     Catapulte *catapulte = Catapulte::getInstance();
 
     TypeUnite *typeUnite;
+
+    if (argent < 10)
+        cout << endl << nom << "ne fait rien. Il lui reste " << argent << " d'or." << endl;
+
     while (argent >= 10) {
         if (argent >= 20)
             typeUnite = catapulte;
@@ -25,8 +26,12 @@ void IA::choisir()
         else
             typeUnite = fantassin;
 
-        acheter(*typeUnite);
-        cout << nom << "a achete un " << typeUnite->getNom() << "." << endl;
+        if (acheter(*typeUnite))
+            cout << endl << nom << "a achete un " << typeUnite->getNom() << ". Il lui reste " << argent << " d'or." << endl;
+        else {
+            cout << endl << nom << "ne fait rien. Il lui reste " << argent << " d'or." << endl;
+            break;
+        }
     }
 
 }

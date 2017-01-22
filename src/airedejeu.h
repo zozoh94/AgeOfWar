@@ -1,6 +1,8 @@
 #ifndef AIREDEJEU_H
 #define AIREDEJEU_H
 
+#define SSTR( x ) static_cast< std::ostringstream & >( ( std::ostringstream() << std::dec << x ) ).str()
+
 #include <map>
 
 #include "joueur.h"
