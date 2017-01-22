@@ -2,11 +2,11 @@
 #include "joueur.h"
 #include "airedejeu.h"
 
-Catapulte::Catapulte() : TypeUnite("Catapulte", 20, 12, 6)
+Catapulte::Catapulte() : TypeUnite("Catapulte", 20, 12, 6), echecAction1(false)
 {
 }
 
-void Catapulte::action1(Unite *unite) const {
+void Catapulte::action1(Unite *unite) {
 
     Joueur *joueur = unite->getJoueur();
     Joueur *adversaire = unite->getJoueur()->getAdversaire();
@@ -21,6 +21,8 @@ void Catapulte::action1(Unite *unite) const {
             }
             else if (joueur->getAire()->attaquer(adversaire, i, pointsAttaque))
                 joueur->getAire()->attaquer(adversaire, i - 1, pointsAttaque); // Attack previous case
+            else
+                echecAction1 = true;
     }
     else {
         // Ennemy at case -2..-4 ?
@@ -31,13 +33,17 @@ void Catapulte::action1(Unite *unite) const {
             }
             else if (joueur->getAire()->attaquer(adversaire, i, pointsAttaque))
                 joueur->getAire()->attaquer(adversaire, i + 1, pointsAttaque); // Attack previous case
+            else
+                echecAction1 = true;
     }
 }
 
-void Catapulte::action2(Unite *unite) const {
-    unite->getJoueur()->getAire()->avancer(unite);
+void Catapulte::action2(Unite *unite) {
 }
 
-void Catapulte::action3(Unite *unite) const {
-
+void Catapulte::action3(Unite *unite) {
+    if(echecAction1) {
+        unite->getJoueur()->getAire()->avancer(unite);
+        echecAction1 = false;
+    }
 }

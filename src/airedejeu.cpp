@@ -155,6 +155,7 @@ bool AireDeJeu::attaquer(Joueur* joueur, int case_, int attaque) {
     if (unites.find(case_) != unites.end() && unites.find(case_)->second->getJoueur() == joueur) {
         unites[case_]->decrVie(attaque);
         if(unites[case_]->estMort()) {
+            joueur->getAdversaire()->incrArgent((unites[case_]->getType()->getPrix())/2);
             unites.erase(case_);
             joueur->supprimerUnite(case_);
         }

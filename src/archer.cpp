@@ -6,7 +6,7 @@ Archer::Archer() : TypeUnite("Archer", 12, 8, 3)
 {
 }
 
-void Archer::action1(Unite *unite) const {
+void Archer::action1(Unite *unite) {
     Joueur *joueur = unite->getJoueur();
     Joueur *adversaire = unite->getJoueur()->getAdversaire();
     if(joueur->getSens() == Joueur::Sens::J1) {
@@ -23,9 +23,9 @@ void Archer::action1(Unite *unite) const {
     }
 }
 
-void Archer::action2(Unite *unite) const {
+void Archer::action2(Unite *unite) {
     unite->getJoueur()->getAire()->avancer(unite);
 }
 
-void Archer::action3(Unite *unite) const {
+void Archer::action3(Unite *unite) {
 }
