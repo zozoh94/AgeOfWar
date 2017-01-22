@@ -19,6 +19,10 @@ void Unite::afficher() const
     cout << "            Case : " << case_ << endl;
 }
 
+const TypeUnite* Unite::getType() const {
+    return type;
+}
+
 int Unite::getCase() const {
     return case_;
 }

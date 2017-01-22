@@ -20,6 +20,7 @@ public:
     bool addUnite(Unite *unite);
     void lancer();
     void afficher() const;
+    void afficherVue() const;
     static Joueur* getAdversaire(AireDeJeu* aire, Joueur* joueur);
     bool attaquer(Joueur* joueur, int case_, int attaque);
     void avancer(Unite* unite);

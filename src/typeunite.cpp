@@ -12,3 +12,7 @@ int TypeUnite::getPrix() const { return prix; }
 int TypeUnite::getPointsVieBase() const { return pointsVieBase; }
 
 int TypeUnite::getPointsAttaque() const { return pointsAttaque; }
+
+int TypeUnite::addition(int a, int b) { return a+b; }
+
+int TypeUnite::subtraction(int a, int b) {return a-b; }
