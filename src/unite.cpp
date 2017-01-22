@@ -54,3 +54,7 @@ void Unite::setCase(int _case_) {
 bool Unite::estMort() const {
     return pointsVie <= 0;
 }
+
+void Unite::setType(TypeUnite* _type) {
+    type = _type;
+}

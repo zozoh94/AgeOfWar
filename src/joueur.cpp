@@ -121,3 +121,10 @@ void Joueur::supprimerUnite(int case_) {
     delete unites.find(case_)->second;
     unites.erase(case_);
 }
+
+Unite* Joueur::getUnite(int case_) const {
+    if(unites.find(case_) != unites.end()){
+        return unites.find(case_)->second;
+    }
+    return nullptr;
+}

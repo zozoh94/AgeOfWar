@@ -24,6 +24,7 @@ public:
     void action2();
     void action3();
     bool estMort() const;
+    void setType(TypeUnite* type);
 };
 
 #endif // UNITE_H
