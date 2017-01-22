@@ -101,8 +101,10 @@ void AireDeJeu::afficherVue() const
                             cout << "F";
                         else if (it->second->getType()->getNom() == "Archer")
                             cout << "A";
-                        if (it->second->getType()->getNom() == "Catapulte")
+                        else if (it->second->getType()->getNom() == "Catapulte")
                             cout << "C";
+                        else
+                            cout << "S";
 
                     found = true;
                 }
