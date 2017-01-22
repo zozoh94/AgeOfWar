@@ -1,5 +1,15 @@
+#include <iostream>
+
 #include "ia.h"
 
-void IA::jouer()
+using namespace std;
+
+void IA::choisir()
 {
+}
+
+void IA::afficher() const
+{
+    cout << "    Type : IA" << endl;
+    Joueur::afficher();
 }

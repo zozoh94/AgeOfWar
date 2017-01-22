@@ -1,27 +1,43 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
-#include <vector>
+#include <map>
 #include <string>
 
 #include "unite.h"
 
 using namespace std;
 
+class AireDeJeu;
+
 class Joueur
 {
 public:
     enum Sens{J1, J2};
 protected:
-    vector<Unite> unites;
+    multimap<int, Unite*> unites;
     Joueur::Sens sens;
     string nom;
+    int argent;
+    int vieBase;
+    bool acheter(TypeUnite& unite);
+    AireDeJeu *aire;
 public:
     Joueur(string nom);
-    const Joueur::Sens getSens();
+    Joueur& setAire(AireDeJeu* aire);
+    Joueur::Sens getSens() const;
     Joueur& setSens(Joueur::Sens sens);
-    virtual const  void afficher();
-    virtual void jouer() = 0;
+    string getNom() const;
+    AireDeJeu* getAire();
+    virtual void afficher() const;
+    virtual void choisir() = 0;
+    void jouer();
+    void incrArgent(int argent);
+    Joueur* getAdversaire();
+    void decrVie(int vie);
+    void avancerUnite(Unite* unite);
+    bool estMort() const;
+    void supprimerUnite(int case_);
 };
 
 #endif // JOUEUR_H

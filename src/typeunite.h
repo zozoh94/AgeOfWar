@@ -2,21 +2,31 @@
 #define TYPEUNITE_H
 
 #include <vector>
+#include <string>
+
+class AireDeJeu;
+class Joueur;
+class Unite;
 
 using namespace std;
-
-class Unite;
 
 class TypeUnite
 {
 friend class Unite;
 protected:
+    string nom;
     int prix;
     int pointsVieBase;
     int pointsAttaque;
-    vector<int> portees;
+    virtual void action1(Unite* unite) const = 0;
+    virtual void action2(Unite* unite) const = 0;
+    virtual void action3(Unite* unite) const = 0;
 public:
-    TypeUnite(int prix, int pointsVieBase, int pointsAttaque, initializer_list<int> portees);
+    TypeUnite(string nom, int prix, int pointsVieBase, int pointsAttaque);
+    string getNom() const;
+    int getPrix() const;
+    int getPointsVieBase() const;
+    int getPointsAttaque() const;
 };
 
 #endif // TYPEUNITE_H

@@ -11,7 +11,8 @@ class IA : public Joueur
 {
 public:
     using Joueur::Joueur;
-    virtual void jouer();
+    virtual void choisir();
+    virtual void afficher() const;
 };
 
 #endif // IA_H
