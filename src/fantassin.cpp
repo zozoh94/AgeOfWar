@@ -3,7 +3,7 @@
 #include "airedejeu.h"
 #include "supersoldat.h"
 
-Fantassin::Fantassin() : TypeUnite("Fantassin", 10, 10, 4), echecAction1(false)
+Fantassin::Fantassin() : TypeUnite("Fantassin", 10, 10, 4)
 {
 }
 
@@ -13,13 +13,13 @@ void Fantassin::action1(Unite *unite) {
     int case_ = unite->getCase();
 
     if (joueur->getSens() == Joueur::Sens::J1) {
-        echecAction1 = !joueur->getAire()->attaquer(adversaire, unite->getCase() + 1, pointsAttaque);
-        if (!echecAction1 && adversaire->getUnite(case_ + 1) == nullptr) {
+        unite->setEchecAction1(!joueur->getAire()->attaquer(adversaire, unite->getCase() + 1, pointsAttaque));
+        if (!unite->getEchecAction1() && adversaire->getUnite(case_ + 1) == nullptr) {
             unite->setType(SuperSoldat::getInstance());
         }
     } else {
-        echecAction1 = !joueur->getAire()->attaquer(adversaire, unite->getCase() - 1, pointsAttaque);
-        if (!echecAction1 && adversaire->getUnite(case_ - 1) == nullptr) {
+        unite->setEchecAction1(!joueur->getAire()->attaquer(adversaire, unite->getCase() - 1, pointsAttaque));
+        if (!unite->getEchecAction1() && adversaire->getUnite(case_ - 1) == nullptr) {
             unite->setType(SuperSoldat::getInstance());
         }
     }
@@ -30,6 +30,7 @@ void Fantassin::action2(Unite *unite) {
 }
 
 void Fantassin::action3(Unite *unite) {
-    action1(unite);
-    echecAction1 = false;
+    if(unite->getEchecAction1())
+        action1(unite);
+    unite->setEchecAction1(false);
 }

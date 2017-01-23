@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Unite::Unite(TypeUnite *_type, Joueur &_joueur, int _case_) : case_(_case_), joueur(_joueur), type(_type)
+Unite::Unite(TypeUnite *_type, Joueur &_joueur, int _case_) : case_(_case_), joueur(_joueur), type(_type), echecAction1(false)
 {
     pointsVie = type->pointsVieBase;
 }
@@ -57,4 +57,12 @@ bool Unite::estMort() const {
 
 void Unite::setType(TypeUnite* _type) {
     type = _type;
+}
+
+bool Unite::getEchecAction1() {
+    return echecAction1;
+}
+
+void Unite::setEchecAction1(bool echec) {
+    echecAction1 = echec;
 }

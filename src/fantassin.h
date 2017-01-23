@@ -11,7 +11,6 @@ class Fantassin : public Singleton<Fantassin>, public TypeUnite
 {
 friend class Singleton<Fantassin>;
 private:
-    int echecAction1;
     Fantassin();
     virtual void action1(Unite* unite);
     virtual void action2(Unite* unite);

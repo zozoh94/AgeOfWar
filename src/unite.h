@@ -12,6 +12,7 @@ private:
     int pointsVie;
     TypeUnite *type;
     Joueur &joueur;
+    bool echecAction1;
 public:
     Unite(TypeUnite *type, Joueur &joueur, int _case_);
     int getCase() const;
@@ -25,6 +26,8 @@ public:
     void action3();
     bool estMort() const;
     void setType(TypeUnite* type);
+    void setEchecAction1(bool echec);
+    bool getEchecAction1();
 };
 
 #endif // UNITE_H
